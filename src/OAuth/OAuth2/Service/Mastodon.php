@@ -35,8 +35,12 @@ class Mastodon extends AbstractService
         parent::__construct($credentials, $httpClient, $storage, $scopes, $baseApiUri, true, $apiVersion);
 
         // $baseApiUri: like https://example.com
-        $this->host = $baseApiUri;
-        $this->baseApiUri = new Uri($baseApiUri . '/api' . $this->getApiVersionString().'/');
+        // ToDo other instances
+        $this->host = 'https://pawoo.net';
+        $this->apiVersion = 1;
+
+        // $this->host = $baseApiUri;
+        $this->baseApiUri = new Uri($this->host . '/api' . $this->getApiVersionString() . '/');
     }
 
     /**
@@ -44,7 +48,7 @@ class Mastodon extends AbstractService
      */
     public function getAuthorizationEndpoint()
     {
-        return new Uri($this->host . '/oauth/token');
+        return new Uri($this->host . '/oauth/authorize');
     }
 
     /**
@@ -93,5 +97,16 @@ class Mastodon extends AbstractService
     protected function getScopesDelimiter()
     {
         return ' ';
+    }
+
+    /**
+     * Returns a class constant from ServiceInterface defining the authorization method used for the API
+     * Header is the sane default.
+     *
+     * @return int
+     */
+    protected function getAuthorizationMethod()
+    {
+        return static::AUTHORIZATION_METHOD_HEADER_BEARER;
     }
 }
