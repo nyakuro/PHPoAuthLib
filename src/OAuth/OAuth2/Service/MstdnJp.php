@@ -2,7 +2,7 @@
 
 namespace OAuth\OAuth2\Service;
 
-class FriendsNico extends Mastodon
+class MstdnJp extends Mastodon
 {
     protected $host = 'https://mstdn.jp';
 }
