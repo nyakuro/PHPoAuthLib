@@ -22,7 +22,7 @@ class Mastodon extends AbstractService
     const SCOPE_WRITE  = 'write';
     const SCOPE_FOLLOW = 'follow';
 
-    private $host;
+    protected $host = 'https://mastodon.social';
 
     public function __construct(
         CredentialsInterface $credentials,
@@ -36,7 +36,6 @@ class Mastodon extends AbstractService
 
         // $baseApiUri: like https://example.com
         // ToDo other instances
-        $this->host = 'https://pawoo.net';
         $this->apiVersion = 1;
 
         // $this->host = $baseApiUri;
